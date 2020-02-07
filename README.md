@@ -1,2 +1,3 @@
 # machine_learning_studies
-studies of machine learning algorithms and coding problems
+
+In this repositary, we wants to coordinates studies of machine learning algorithms, and share the code problems.

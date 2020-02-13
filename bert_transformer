@@ -1,0 +1,45 @@
+1. 自注意力机制为什么work？ 
+https://www.cnblogs.com/robert-dlut/p/8638283.html（待看）
+
+2. Tokenizaiton的整体逻辑
+2.1 WordpieceTokenizer
+2.1.1 会让序列的长度变的更长吗？对于有wordpiece的sentence会变长。max_seq_len为WordPiece tokenization后的长度。mask的时候，整个mask掉
+2.1.2 token embedding，对于WordpieceTokenizer，不需要特殊处理，已经映射成id，词表中包含。
+
+3. query、key、value分别是什么？
+3.1 bert为self-Attention, from_tensor=to_tensor：token embedding+ position embedding + token type embedding 
+3.1.1 query：from_tensor做线性映射 
+3.1.2 key：to_tensor做线性映射
+3.1.3 value: to_tensor做线性映射
+3.1.4 units为num_attention_heads * size_per_head=》做num_attention_heads：h次线性映射
+
+4 input embedding
+4.1 token embedding
+4.1.1 one-hot embedding 
+4.1.2 tf.gather()： tf.gather(embedding_table, flat_input_ids)，flat_input_ids = tf.reshape(input_ids, [-1]) 
+4.1.3 以上两种embedding的结果差异？
+4.1.4 seq_length： padded sequence length
+4.2 token type embedding
+4.2.1 token_type_embeddings = tf.matmul(one_hot_ids, token_type_table) 和embedding lookup的区别？
+4.3 position embedding
+4.3.1 bert：tf.slice(full_position_embeddings, [0, 0], [seq_length, -1]， 
+4.3.2 transformer是用的sin、cos函数生成的固定的tensor，这个文章里实验验证效果好
+bert是随着训练调整的embedding，随机初始化；为什么不直接用transformer里的embedding方式？
+4.3.3 max_position_embeddings
+0-512的数字为token，做embedding；设置默认为512，所以限定了max_seq_len长度不能超过512
+
+5. transformer multihead
+5.1 tf.dense做线性映射，然后并行做scaled dot Attention
+
+6. padding的部分，影响在线推理速度吗？ 
+6.1 RNN的padding，会影响在线推理速度吗？
+
+7. attention_mask
+7.1 作用：padding部分不能attend到其他部分
+7.2 加在softmax之前，不attend的位置加-10000（exp（-10000）≈0），attend部分值不变。
+
+8.bert loss 
+total_loss = masked_lm_loss + next_sentence_loss
+
+9. bert是否适合做文本生成？ 
+与Lstm相比，是否更适合/不适合做文本生成？

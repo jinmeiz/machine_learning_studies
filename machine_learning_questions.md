@@ -22,3 +22,8 @@ When using sigmoid functions, there are regions where gradient is nearly zero (p
 Attention model computes a set of attention weights and determine how much you should pay attenton to different parts of inputs.
 
 $\alpha^{<t, t'>}$: amonut of attention $y^{<t>}$ (output at t step) should pay to $a^{<t'>}$ (RNN features from t step)
+    
+
+# Transfer learning
+
+It refers to a process where a model trained on one problem is used in some way on a second, related problem. Pre-trained models can be used as classifier, feature extractor (layers of pre-trained model are frozen during training), weight initilization (layers are trained during training).

@@ -28,11 +28,3 @@ $\alpha^{<t, t'>}$: amonut of attention $y^{<t>}$ (output at t step) should pay 
 
 It refers to a process where a model trained on one problem is used in some way on a second, related problem. Pre-trained models can be used as classifier, feature extractor (layers of pre-trained model are frozen during training), weight initilization (layers are trained during training).
 
-# Kullback-Leibler Divergence
-
-The Kullback-Leibler Divergence score, or KL divergence score, quantifies how much one probability distribution differs from another probability distribution. KL divergence can be calculated as the negative sum of probability of each event in P multiplied by the log of the probability of the event in Q over the probability of the event in P:
-
-$$$ KL(P||Q) = - \sum P(X) log(P(X) / Q(X))$
-
-The intuition for the KL divergence score is that when the probability for an event from P is large, but the probability for the same event in Q is small, there is a large divergence. When the probability from P is small and the probability from Q is large, there is also a large divergence, but not as large as the first case.
-

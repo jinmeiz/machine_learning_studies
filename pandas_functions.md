@@ -18,6 +18,23 @@ import warnings
 warnings.filterwarnings('ignore')
 ```
 
+## Functions
+### change column type
+```
+df['col'].astype(str)
+```
+### group and aggregate
+```
+(df
+ .groupby('col', as_index=False)
+ .agg('sum')
+ )
+```
+### sort by value
+```
+df.sort_values(by=['col'], ascending=False)
+```
+
 ## Show all columns
 ```
 import pandas as pd

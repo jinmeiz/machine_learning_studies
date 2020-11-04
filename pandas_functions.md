@@ -56,6 +56,11 @@ from ast import literal_eval
 data_pd['col'] = data_pd['col'].apply(literal_eval)
 ```
 
+## Drop duplicates
+```
+df.drop_duplicates(subset=['col_1'])
+```
+
 ## Remove file
 ```
 import os
@@ -81,6 +86,40 @@ with open('data.pkl', 'wb') as f:
     
 with open('data.pkl', 'rb') as f:
     data = pickle.load(f)
+```
+
+## useful functions
+```
+# drop column
+df.drop(['col'], axis = 1)
+
+# create dictionary with pandas columns
+col_dict = dict(zip(df.col1, df.col2))
+
+# lambda function
+lambda x: col_dict[x]
+
+# convert column to numpy array
+np.array(df.col.values.tolist())
+```
+
+## sort
+```
+df.sort_values(by='col1', ascending=False)
+```
+
+## append other dataframe
+```
+df1.append(df2, ignore_index=True)
+```
+
+## groupby
+```
+(df
+ .groupby('col', as_index=False)['col']
+ .agg({'col_count':'count'})
+ .sort_values(by='col_count', ascending=False)
+ )
 ```
 
 ## Indent codes

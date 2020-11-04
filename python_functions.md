@@ -179,6 +179,11 @@ isinstance(x, class)
 int(x, base=10)
 ```
 
+## iterate over element and index
+```
+for i, e in enumerate(lst):
+```
+
 ## bisect
 
 ```

@@ -28,3 +28,34 @@ $\alpha^{<t, t'>}$: amonut of attention $y^{<t>}$ (output at t step) should pay 
 
 It refers to a process where a model trained on one problem is used in some way on a second, related problem. Pre-trained models can be used as classifier, feature extractor (layers of pre-trained model are frozen during training), weight initilization (layers are trained during training).
 
+# Logistic classifier
+
+1) score(xi) = w * h(xi)  (value range: -∞, +∞)
+    p(y=+1| x, w) = 1 / [1 + e^(-w * h(xi) )]  (value range: 0.0, 1.0)
+
+2) choose coefficiet w that maximizes the likehood:
+    L(w) = ∏ p(yi | xi, w) 
+    ln(L(w)) = y lnP + (1-y) ln(1-P)
+
+# Gradient descent
+It is slow as every update requires a full pass over data. 
+For stochastic gradient descent, there are many updates for each pass.
+
+# Gradient Boosting
+loss function L(yi, F(xi))
+for m = 1: M (number of trees):
+    compute residual r_im = - ∂(L) / ∂F(xi)
+    fit tree on gradient residuals
+    compute residual region R_jm (minimize ∑L(yi, Fm-1 + r) ) ?
+    new prediction: F_m(x) = F_(m-1)(x) + 𝜸 ∑ R_jm 
+
+# Support vector machine
+
+margin width = (X+ - X_) · w/||w|| = 2 / ||w||
+maximization of width is equal to minimization of 1/2 ||w||^2
+
+Using langrange multiplier: L =  1/2 ||w||^2 - ∑ai [yi (w · xi + b) - 1]
+∂L / ∂w = 0 → w = ∑ai yi xi
+∂L / ∂b = 0 → 0 = ∑ai yi 
+
+minimizing L = ∑ai - 1/2 ∑∑ ai aj yi yj xi · xj    ➝ maximizing xi · xj

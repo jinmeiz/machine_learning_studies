@@ -184,6 +184,15 @@ int(x, base=10)
 for i, e in enumerate(lst):
 ```
 
+## random
+```
+import random
+
+number = random.random()
+integer = random.randint(1,30)
+randomlist = random.sample(range(10, 30), 5)
+```
+
 ## bisect
 
 ```

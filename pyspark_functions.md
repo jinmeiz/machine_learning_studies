@@ -11,6 +11,11 @@ spark = SparkSession(spark_context)
 spark_df = spark.createDataFrame(pandas_pd)
 ```
 
+## rename column
+```
+df.withColumnRenamed(existingName, newNam)
+```
+
 ## get items from array column
 
 ```

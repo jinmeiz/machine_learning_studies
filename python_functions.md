@@ -193,6 +193,15 @@ integer = random.randint(1,30)
 randomlist = random.sample(range(10, 30), 5)
 ```
 
+## read text file
+```
+txt_file = open('data.txt', 'r') 
+lines = txt_file.readlines() 
+
+for line in lines: 
+    print(line)
+```
+
 ## bisect
 
 ```

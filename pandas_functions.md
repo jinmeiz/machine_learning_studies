@@ -69,6 +69,24 @@ if os.path.exists(file_name):
        os.remove(file_name)
 ```       
 
+## Create dataframe from lists of list
+```
+# initialize list of lists  
+data = [['DS', 'Linked_list', 10], ['DS', 'Stack', 9], 
+        ['Algo', 'Greedy', 8], ['Algo', 'DP', 6], ]  
+  
+# Create the pandas DataFrame  
+df = pd.DataFrame(data, columns = ['Category', 'Name', 'Marks']) 
+
+Output:
+Category         Name  Marks
+0       DS  Linked_list     10
+1       DS        Stack      9
+3     Algo       Greedy      8
+4     Algo           DP      6
+```
+
+
 ## Save and read file
 ### pandas dataframe to csv
 ```

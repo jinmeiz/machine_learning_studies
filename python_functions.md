@@ -201,6 +201,32 @@ lines = txt_file.readlines()
 for line in lines: 
     print(line)
 ```
+## write to csv file
+```
+import csv  
+    
+# field names  
+fields = ['Branch', 'Year', 'CGPA']  
+    
+# data rows of csv file  
+rows = [ ['COE', '2', '9.0'],  
+         ['COE', '2', '9.1'],  
+         ['IT', '2', '9.3']]  
+    
+# name of csv file  
+filename = "records.csv"
+    
+# writing to csv file  
+with open(filename, 'w') as csvfile:  
+    # creating a csv writer object  
+    csvwriter = csv.writer(csvfile)  
+        
+    # writing the fields  
+    csvwriter.writerow(fields)  
+        
+    # writing the data rows  
+    csvwriter.writerows(rows)
+```
 
 ## bisect
 

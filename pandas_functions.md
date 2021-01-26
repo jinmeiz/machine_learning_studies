@@ -1,6 +1,11 @@
 # Jupyter notebook/Pandas functions
 
 ## Progress bar
+```
+from tqdm import trange
+    
+for i in trange(len(num)):
+```
 
 ```
 from tqdm.auto import tqdm

@@ -27,7 +27,7 @@ df.withColumn('item_0', F.col('array_col').getItem(0))
 df.withColumn('rank',
               F.row_number().over(Window
                                   .partitionBy('partition_col')
-                                  .orderBy(F.col('orderby_col))
+                                  .orderBy(F.col('orderby_col'))
                                   )
               )
 ```

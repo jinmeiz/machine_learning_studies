@@ -186,7 +186,7 @@ rows = [ ['COE', '2', '9.0'],
 
 # name of csv file  
 filename = "records.csv"
-    
+
 # writing to csv file  
 with open(filename, 'w') as csvfile:  
     # creating a csv writer object  
@@ -396,3 +396,11 @@ https://www.geeksforgeeks.org/bisect-algorithm-functions-in-python/
 5. insort_left(list, num, beg, end) :- This function returns the sorted list after inserting number in appropriate position, if the element is already present in the list, the element is inserted at the leftmost possible position.
 
 6. insort_right(list, num, beg, end) :- This function works similar to the “insort()” as mentioned above.
+
+## remove directory
+```
+import shutil
+
+path = 'file_path'
+shutil.rmtree(path)
+```

@@ -172,6 +172,20 @@ lines = txt_file.readlines()
 for line in lines:
     print(line)
 ```
+
+## read/write json file
+```
+import json
+with open('data.json') as f:
+    data = json.load(f)
+
+# load string to dict
+json.loads(data)
+
+with open('data.json', 'w') as f:
+    json.dump(data, f)
+```
+
 ## write to csv file
 ```
 import csv  

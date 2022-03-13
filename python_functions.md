@@ -164,55 +164,6 @@ integer = random.randint(1,30)
 randomlist = random.sample(range(10, 30), 5)
 ```
 
-## read text file
-```
-txt_file = open('data.txt', 'r')
-lines = txt_file.readlines()
-
-for line in lines:
-    print(line)
-```
-
-## read/write json file
-```
-import json
-with open('data.json') as f:
-    data = json.load(f)
-
-# load string to dict
-json.loads(data)
-
-with open('data.json', 'w') as f:
-    json.dump(data, f)
-```
-
-## write to csv file
-```
-import csv  
-
-# field names  
-fields = ['Branch', 'Year', 'CGPA']  
-
-# data rows of csv file  
-rows = [ ['COE', '2', '9.0'],  
-         ['COE', '2', '9.1'],  
-         ['IT', '2', '9.3']]  
-
-# name of csv file  
-filename = "records.csv"
-
-# writing to csv file  
-with open(filename, 'w') as csvfile:  
-    # creating a csv writer object  
-    csvwriter = csv.writer(csvfile)  
-
-    # writing the fields  
-    csvwriter.writerow(fields)  
-
-    # writing the data rows  
-    csvwriter.writerows(rows)
-```
-
 ## data structure
 
 ### stack
@@ -411,10 +362,121 @@ https://www.geeksforgeeks.org/bisect-algorithm-functions-in-python/
 
 6. insort_right(list, num, beg, end) :- This function works similar to the “insort()” as mentioned above.
 
-## remove directory
+## read/ write files
+### read text file
+```
+txt_file = open('data.txt', 'r')
+lines = txt_file.readlines()
+
+for line in lines:
+    print(line)
+```
+
+### read/write json file
+```
+import json
+with open('data.json') as f:
+    data = json.load(f)
+
+# load string to dict
+json.loads(data)
+
+with open('data.json', 'w') as f:
+    json.dump(data, f)
+```
+
+## pickle
+```
+import pickle
+
+with open('mylist.pkl', 'wb') as f:
+	pickle.dump(mylist, f)
+
+with open('mylist.pkl', 'rb') as f:
+	mylist = pickle.load(f)
+```
+
+### write to csv file
+```
+import csv  
+
+# field names  
+fields = ['Branch', 'Year', 'CGPA']  
+
+# data rows of csv file  
+rows = [ ['COE', '2', '9.0'],  
+         ['COE', '2', '9.1'],  
+         ['IT', '2', '9.3']]  
+
+# name of csv file  
+filename = "records.csv"
+
+# writing to csv file  
+with open(filename, 'w') as csvfile:  
+    # creating a csv writer object  
+    csvwriter = csv.writer(csvfile)  
+
+    # writing the fields  
+    csvwriter.writerow(fields)  
+
+    # writing the data rows  
+    csvwriter.writerows(rows)
+```
+
+## file and directoy operations
+### get all files matching suffix
+```
+import fnmatch
+import os
+
+# list sub directories
+for root, subdirs, files in os.walk(rootdir):
+    if len(subdirs) != 0:
+        print(subdirs)
+        
+file_list = []
+for root, dirnames, filenames in os.walk(rootdir):
+    for filename in fnmatch.filter(filenames, '*.csv'):
+        file_list.append(os.path.join(root, filename))
+
+```
+### check if directory exists
+```
+import os
+is_exist = os.path.isdir(path)
+if not is_exist:
+    os.mkdir(f'./{path}')
+```
+
+### remove directory
 ```
 import shutil
 
 path = 'file_path'
 shutil.rmtree(path)
+```
+
+## time operations
+### datetime
+```
+from datetime import datetime, timedelta
+
+datetime.strptime(time_str, '%Y-%m-%d %H:%M:%S')
+(datetime.strptime(time_str, '%Y-%m-%d') + timedelta(days = 7)).strftime('%Y-%m-%d')
+
+time_delta.total_seconds()/3600
+
+epoch_time = 1571005498
+datetime_time = datetime.fromtimestamp(epoch_time)
+```
+### timing code
+```
+import time
+start_time = time.time()
+main()
+print("--- %s seconds ---" % (time.time() - start_time))
+
+start = time.perf_counter()
+main()
+print(time.perf_counter() - start)
 ```

@@ -28,16 +28,62 @@ warnings.filterwarnings('ignore')
 ```
 df['col'].astype(str)
 ```
+### convert string list from csv to list
+```
+from ast import literal_eval
+
+data_pd['col'] = data_pd['col'].apply(literal_eval)
+``` 
 ### group and aggregate
 ```
 (df
  .groupby('col', as_index=False)
  .agg('sum')
  )
+ 
+(df
+ .groupby('col', as_index=False)['col']
+ .agg({'col_count':'count'})
+ .sort_values(by='col_count', ascending=False)
+ )
 ```
 ### sort by value
 ```
 df.sort_values(by=['col'], ascending=False)
+```
+### drop duplicates
+```
+df.drop_duplicates(subset=['col_1'])
+```
+### drop columns
+```
+df.drop(['B', 'C'], axis=1)
+```
+### apply function on a row
+```
+df.apply(fun, axis=1)
+
+# apply function with argument
+df[col].apply(fun, args=(arg1,))
+```
+### select the ith row
+```
+df.iloc[0]
+```
+### iterate rows
+```
+for index, row in df.iterrows():
+    print(row['c1'], row['c2'])
+```
+### reset index
+```
+df = df.reset_index(drop=True)
+```
+### rename columns
+```
+df = df.rename(columns={'col_old': 'col_new', })
+
+df.columns = cols
 ```
 
 ## Show all columns
@@ -47,32 +93,14 @@ import pandas as pd
 pd.set_option('display.max_colwidth', -1)
 ```
 
-## Read file without creating extra index column
+## Read file
 ```
-import pandas as pd
-
+# without creating extra index column
 pd.read_csv('data.csv', index_col=0)
-```
 
-## Read list of strings from csv
-```
-from ast import literal_eval
-
-data_pd['col'] = data_pd['col'].apply(literal_eval)
-```
-
-## Drop duplicates
-```
-df.drop_duplicates(subset=['col_1'])
-```
-
-## Remove file
-```
-import os
- 
-if os.path.exists(file_name):
-       os.remove(file_name)
-```       
+# skip rows when reading csv
+data = pd.read_csv(fname, skiprows=n)
+```     
 
 ## Create dataframe from lists of list
 ```
@@ -91,6 +119,27 @@ Category         Name  Marks
 4     Algo           DP      6
 ```
 
+## useful functions
+```
+# create dictionary with pandas columns
+col_dict = dict(zip(df.col1, df.col2))
+
+# lambda function
+lambda x: col_dict[x]
+
+# convert column to numpy array
+np.array(df.col.values.tolist())
+```
+
+## Two dataframes
+### append other dataframe
+```
+df1.append(df2, ignore_index=True)
+```
+### anti join:
+```
+df1[~df1[['label1','label2']].apply(tuple,1).isin(df2[['label1','label2']].apply(tuple,1))]
+```
 
 ## Save and read file
 ### pandas dataframe to csv
@@ -111,39 +160,13 @@ with open('data.pkl', 'rb') as f:
     data = pickle.load(f)
 ```
 
-## useful functions
+## Remove file
 ```
-# drop column
-df.drop(['col'], axis = 1)
-
-# create dictionary with pandas columns
-col_dict = dict(zip(df.col1, df.col2))
-
-# lambda function
-lambda x: col_dict[x]
-
-# convert column to numpy array
-np.array(df.col.values.tolist())
-```
-
-## sort
-```
-df.sort_values(by='col1', ascending=False)
-```
-
-## append other dataframe
-```
-df1.append(df2, ignore_index=True)
-```
-
-## groupby
-```
-(df
- .groupby('col', as_index=False)['col']
- .agg({'col_count':'count'})
- .sort_values(by='col_count', ascending=False)
- )
-```
+import os
+ 
+if os.path.exists(file_name):
+       os.remove(file_name)
+``` 
 
 ## Indent codes
 Tab

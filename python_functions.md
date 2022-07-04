@@ -447,6 +447,15 @@ is_exist = os.path.isdir(path)
 if not is_exist:
     os.mkdir(f'./{path}')
 ```
+### join directory and file path
+```
+dirname = os.path.dirname(__file__)
+filename = os.path.join(dirname, 'relative/path/to/file/you/want')
+```
+### use enviroment variables
+```
+os.path.expandvars('$ENV/test')
+```
 
 ### remove directory
 ```

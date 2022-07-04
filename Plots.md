@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 plt.figure(figsize=(10, 6))
 
-df['dates'] = pd.to_datetime(df[‘date_str'])
+df['dates'] = pd.to_datetime(df['date_str'])
 plt.plot(df.dates, df[cols])
 
 plt.ylabel('y')

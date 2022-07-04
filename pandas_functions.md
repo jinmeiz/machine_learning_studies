@@ -43,7 +43,7 @@ data_pd['col'] = data_pd['col'].apply(literal_eval)
  
 (df
  .groupby('col', as_index=False)['col']
- .agg({'col_count':'count'})
+ .agg({'col_count':'count', 'col_list': pd.Series.tolist})
  .sort_values(by='col_count', ascending=False)
  )
 ```
@@ -102,7 +102,8 @@ pd.read_csv('data.csv', index_col=0)
 data = pd.read_csv(fname, skiprows=n)
 ```     
 
-## Create dataframe from lists of list
+## Create dataframe 
+### from lists of list
 ```
 # initialize list of lists  
 data = [['DS', 'Linked_list', 10], ['DS', 'Stack', 9], 
@@ -117,6 +118,10 @@ Category         Name  Marks
 1       DS        Stack      9
 3     Algo       Greedy      8
 4     Algo           DP      6
+```
+### from series
+```
+new_df = df['label_col'].copy().to_frame()
 ```
 
 ## useful functions

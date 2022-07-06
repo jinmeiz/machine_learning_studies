@@ -26,3 +26,8 @@ plt.bar(num_bars+width, list_2, width, label='label_2')
 
 plt.xticks(num_bars, list_xtick_str)
 ```
+
+## scatter plot
+```
+plt.scatter(data1, data2)
+```

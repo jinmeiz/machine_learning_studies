@@ -22,6 +22,19 @@ df.withColumnRenamed(existingName, newNam)
 df.withColumn('item_0', F.col('array_col').getItem(0))
 ```
 
+## spark udf
+
+```
+from pyspark.sql.types import BooleanType, StringType, IntegerType
+
+def func(x):
+  	pass
+
+udf = F.udf(func, returnType=StringType())
+
+df.withColumn(new_col_name, udf(col_name)))
+```
+
 ## rank by group
 ```
 df.withColumn('rank',

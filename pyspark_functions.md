@@ -17,6 +17,19 @@ spark = SparkSession(spark_context)
 spark_df = spark.createDataFrame(pandas_pd)
 ```
 
+## create spark dataframe from list
+```
+from pyspark.sql.types import StructType,StructField, StringType
+
+schema = StructType([       
+    StructField(col_name, StringType(), True),
+])
+
+data_list = [(col_1), (col_2)]
+
+dia_df = spark.createDataFrame(data=data_list, schema=schema)
+```
+
 ## rename column
 ```
 df.withColumnRenamed(existingName, newNam)
